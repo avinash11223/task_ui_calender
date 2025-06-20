@@ -38,9 +38,7 @@
   <div class="in-app-calendar-overlay">
     <div class="in-app-calendar-container">
       <button class="close-btn" on:click={closeInAppCalendar}>×</button>
-      <div class="in-app-calendar-scroll-area">
         <In_app_calender />
-      </div>
     </div>
   </div>
 {/if}
@@ -79,28 +77,18 @@ p { margin-top: 24px; font-size: 1.1rem; }
   flex-direction: column;
 }
 
-.in-app-calendar-scroll-area {
-  overflow-y: auto;
-  height: 100%;
-  -ms-overflow-style: none;  
-  
-}
-
-.in-app-calendar-scroll-area::-webkit-scrollbar {
-  display: none;
-}
 
 .close-btn {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 10px;
-  height: 10px;
+  position: fixed;
+  top: 6px;
+  right: 6px;
+  width: 25px;
+  height: 25px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 25px;
   display: flex;
   align-items: center;
   justify-content: center;

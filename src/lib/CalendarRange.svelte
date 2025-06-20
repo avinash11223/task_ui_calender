@@ -141,10 +141,10 @@
 
 <style>
 :global(html) {
-  font-family: 'Pilcrow Rounded', sans-serif;
+  font-family: 'Satoshi', sans-serif;
 }
 .calendar-modal, .sidebar, .preset, .calendar-content, .header, .day, .date, .footer, input[type="text"], button {
-  font-family: 'Pilcrow Rounded', sans-serif;
+  font-family: 'Satoshi', sans-serif;
 }
 .modal-backdrop {
   position: fixed; inset: 0; background: rgba(0,0,0,0.12); z-index: 10;

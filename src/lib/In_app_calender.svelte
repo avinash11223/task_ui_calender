@@ -111,8 +111,7 @@
   const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 </script>
 
-<div class="calendar-container">
-  <!-- Header -->
+<div class="calendar-outer">
   <div class="calendar-header">
     <div class="calendar-title">
       <div class="month-year">
@@ -164,47 +163,48 @@
       </button>
     </div>
   </div>
+  <div class="calendar-scrollable">
+    <div class="calendar-grid">
+      <div class="day-headers">
+        {#each dayNames as dayName}
+          <div class="day-header">{dayName}</div>
+        {/each}
+      </div>
 
-  
-  <div class="calendar-grid">
-    
-    <div class="day-headers">
-      {#each dayNames as dayName}
-        <div class="day-header">{dayName}</div>
-      {/each}
-    </div>
-
-  
-    <div class="calendar-days">
-      {#each calendarDays as day, index}
-        <div class="calendar-day" class:today={day.isToday} class:other-month={day.isPrevMonth || day.isNextMonth}>
-          <div class="day-number">{day.date}</div>
-          <div class="day-events">
-            {#each day.events as event}
-              <div class="event" style="background-color: {event.color}; color: {event.textColor || '#ffffff'};">
-                {#if event.time}
-                  <span class="event-time">{event.time}</span>
-                {/if}
-                <span class="event-title">{event.title}</span>
-              </div>
-            {/each}
+      <div class="calendar-days">
+        {#each calendarDays as day, index}
+          <div class="calendar-day" class:today={day.isToday} class:other-month={day.isPrevMonth || day.isNextMonth}>
+            <div class="day-number">{day.date}</div>
+            <div class="day-events">
+              {#each day.events as event}
+                <div class="event" style="background-color: {event.color}; color: {event.textColor || '#ffffff'};">
+                  {#if event.time}
+                    <span class="event-time">{event.time}</span>
+                  {/if}
+                  <span class="event-title">{event.title}</span>
+                </div>
+              {/each}
+            </div>
           </div>
-        </div>
-      {/each}
+        {/each}
+      </div>
     </div>
   </div>
 </div>
 
 <style>
-  .calendar-container {
+  .calendar-outer {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
     background: #1a1a1a;
-    color: #ffffff;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    min-height: 100vh;
-    padding: 0;
   }
 
   .calendar-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #1a1a1a;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -334,6 +334,11 @@
 
   .add-event-btn:hover {
     background: #444444;
+  }
+
+  .calendar-scrollable {
+    overflow-y: auto;
+    scrollbar-width: none;
   }
 
   .calendar-grid {
